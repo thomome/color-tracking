@@ -19,7 +19,9 @@ navigator.mediaDevices.getUserMedia({
 })
 
 function init() {
-  const tracker = new ColorTracker(video);
+  const tracker = new ColorTracker(video, {
+		fps: 60
+	});
   tracker.addColor({
     name: 'yellow',
     threshold: 50,
@@ -28,13 +30,21 @@ function init() {
 	tracker.addColor({
     name: 'red',
     threshold: 50,
-    color: [216, 87, 97]
+    color: [153, 37, 52]
   });
 	tracker.run();
 
 	let trackings = [];
 
+	let last = performance.now();
+	const fps = [];
+
 	tracker.on('track', (rects) => {
+		const now = performance.now();
+		fps.unshift(now - last);
+		last = now;
+		fps.splice(60);
+		document.querySelector('h2').innerHTML = Math.round(fps.reduce((sum, val) => sum + val) / fps.length);
 		trackings = rects;
 	});
 

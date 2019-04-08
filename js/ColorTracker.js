@@ -60,10 +60,10 @@ class ColorTracker {
   }
 
   run() {
+		this.last = performance.now();
     this.ctx.drawImage(this.source, 0, 0, this.width, this.height);
     this.imageData = this.ctx.getImageData(0, 0, this.width, this.height);
 
-		this.last = performance.now();
 		this.worker.postMessage({
 			type: 'track',
 			colors: this.colors,
@@ -73,10 +73,10 @@ class ColorTracker {
 
 	done(rects) {
 		this.emit('track', rects);
-
 		const now = performance.now();
 		let wait = 1000/this.opts.fps - (now - this.last);
 		if(wait < 0) wait = 0;
+
 		setTimeout(() => {
 			this.run();
 		}, wait);
