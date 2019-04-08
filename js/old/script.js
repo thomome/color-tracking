@@ -28,8 +28,13 @@ function init() {
 	tracker.addColor({
     name: 'red',
     threshold: 50,
-    color: [216, 87, 97]
+    color: [239, 86, 79]
   });
+	/*tracker.addColor({
+    name: 'green',
+    threshold: 50,
+    color: [78, 195, 166]
+  });*/
 	tracker.run();
 
 	let trackings = [];

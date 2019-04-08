@@ -1,9 +1,9 @@
 class DensityBasedClusterer {
-  constructor(epsilon, minPts) {
+  constructor() {
     this.dataset = [];
     this.datasetLength = this.dataset.length;
-    this.epsilon = epsilon ? epsilon : 3;
-    this.minPts = minPts ? minPts : 3;
+    this.epsilon = 1;
+    this.minPts = 2;
 
     this.clusters = [];
     this.noise = [];
