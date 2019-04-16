@@ -72,7 +72,9 @@ class ColorTracker {
   }
 
 	done(rects) {
-		this.emit('track', rects);
+		if(rects.length > 0) {
+			this.emit('track', rects);
+		}
 		const now = performance.now();
 		let wait = 1000/this.opts.fps - (now - this.last);
 		if(wait < 0) wait = 0;

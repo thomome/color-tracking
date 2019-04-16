@@ -25,7 +25,7 @@ function init() {
   tracker.addColor({
     name: 'yellow',
     threshold: 50,
-    color: [245, 248, 169]
+    color: [255, 230, 78]
   });
 	tracker.addColor({
     name: 'red',
