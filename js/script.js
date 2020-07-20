@@ -20,7 +20,7 @@ navigator.mediaDevices.getUserMedia({
 
 function init() {
   const tracker = new ColorTracker(video, {
-		fps: 60
+		fps: 30
 	});
   tracker.addColor({
     name: 'yellow',
@@ -44,7 +44,7 @@ function init() {
 		fps.unshift(now - last);
 		last = now;
 		fps.splice(60);
-		document.querySelector('h2').innerHTML = Math.round(fps.reduce((sum, val) => sum + val) / fps.length);
+		document.querySelector('h2').innerHTML = Math.round(fps.reduce((sum, val) => sum + val) / fps.length) + 'ms';
 		trackings = rects;
 	});
 
